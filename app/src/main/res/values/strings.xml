@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MiniDelivery_customer</string>
+
+    <!-- Menu Bar -->
+    <string name="home">Home</string>
+    <string name="liked">Liked</string>
+    <string name="my">My</string>
+
+
 </resources>
