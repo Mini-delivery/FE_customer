@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -41,6 +42,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         // FakeItem에서 가져온 데이터로 ViewModel 설정
         viewModel.setBannerItems(fakeItem.fakeBannerItemList)
         viewModel.setGridItems(fakeItem.fakeGridItemList)
+
+        binding.ivHamburger.setOnClickListener(this)
+        binding.llDrawer.llLeftArea.setOnClickListener(this)
 
         initViewPager2()
         subscribeObservers()
@@ -112,9 +116,27 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         TODO("Not yet implemented")
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+    override fun onClick(view: View?) {
+        view?.let {
+            when (it.id) {
+                R.id.iv_hamburger -> {
+                    val drawerLayout = binding.root.findViewById<DrawerLayout>(R.id.drawer_layout)
+                    val llDrawer = binding.root.findViewById<View>(R.id.llDrawer)
+                    if (drawerLayout.isDrawerOpen(llDrawer)) {
+                        drawerLayout.closeDrawer(llDrawer)
+                    } else {
+                        drawerLayout.openDrawer(llDrawer)
+                    }
+                }
+                R.id.ll_left_area -> {
+                    val drawerLayout = binding.root.findViewById<DrawerLayout>(R.id.drawer_layout)
+                    val llDrawer = binding.root.findViewById<View>(R.id.llDrawer)
+                    if (drawerLayout.isDrawerOpen(llDrawer)) {
+                        drawerLayout.closeDrawer(llDrawer)
+                    }
+                }
+            }
+        }
     }
-
 
 }
