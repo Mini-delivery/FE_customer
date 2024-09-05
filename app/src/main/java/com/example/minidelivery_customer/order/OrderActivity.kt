@@ -42,26 +42,14 @@ class OrderActivity : AppCompatActivity() {
     // 임시 카페 아이템 생성 (실제 데이터로 대체 필요)
     private fun getFakeCafeItems(): List<CafeItem> {
         return listOf(
-            CafeItem("스타벅스 한성대입구역점", "3.7", "4280", "1.1km", "무료배달", "27분", R.drawable.starbucks),
-            CafeItem("소설원 삼선교점", "4.4", "750", "1.2km", "2,000원", "42분", R.drawable.soseolwon),
-            CafeItem("사만 커피 로스터스", "4.1", "680", "2.3km", "1,500원", "59분", R.drawable.saamann),
-            CafeItem("스펙터", "4.7", "820", "4.8km", "무료배달", "61분", R.drawable.spectre)
+            CafeItem("스타벅스 한성대입구역점", "3.7", "4,282", "1.1km", "무료배달", "27분", R.drawable.starbucks),
+            CafeItem("소설원 삼선교점", "4.4", "1,751", "1.6km", "2,000원", "42분", R.drawable.soseolwon),
+            CafeItem("사만 커피 로스터스", "4.1", "689", "2.9km", "1,500원", "59분", R.drawable.saamann),
+            CafeItem("스펙터", "4.7", "828", "4.8km", "무료배달", "61분", R.drawable.spectre),
+            CafeItem("삼원샏", "4.2", "1,296", "7.5km", "3,000원", "54분", R.drawable.samwonsac),
+            CafeItem("커피한약집 혜화점", "4.9", "563", "2.4km", "무료배달", "34분", R.drawable.hywha)
         )
     }
 }
 
-// 임시 메뉴 아이템 생성 (실제 데이터로 대체 필요)
-private fun getFakeMenuItems(): List<MenuItem> {
-    return listOf(
-        MenuItem("Iced Caffe Americano", "4,500원", R.drawable.americano),
-        MenuItem("카페라떼", "5,000원", R.drawable.affogato),
-        MenuItem("카푸치노", "5,500원", R.drawable.coffe_sparkling),
-        MenuItem("카푸치노", "5,500원", R.drawable.latte_shakerato),
-        MenuItem("카푸치노", "5,500원", R.drawable.latte_lavender),
-        MenuItem("카푸치노", "5,500원", R.drawable.latte_glazed),
-        MenuItem("카푸치노", "5,500원", R.drawable.latte_french),
-        MenuItem("카푸치노", "5,500원", R.drawable.shake_passion),
-        MenuItem("카푸치노", "5,500원", R.drawable.shake_mango)
-    )
-}
 

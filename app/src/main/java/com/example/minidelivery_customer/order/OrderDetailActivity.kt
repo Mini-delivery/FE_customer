@@ -40,7 +40,7 @@ class OrderDetailActivity : AppCompatActivity() {
         }
     }
 
-    // 장바구니 버튼 클릭 이벤트 처리
+    // 결제 버튼 클릭 이벤트 처리
     private fun setupOrderButton() {
         binding.orderButton.setOnClickListener {
             // 장바구니에 추가하는 로직 구현

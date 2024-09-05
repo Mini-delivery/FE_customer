@@ -21,7 +21,8 @@ class MenuAdapter(
 
     override fun getItemCount() = menuItems.size
 
-    inner class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MenuViewHolder(private val binding: ItemMenuBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(menuItem: MenuItem) {
             // 메뉴 아이템 정보 바인딩
             binding.menuName.text = menuItem.name
