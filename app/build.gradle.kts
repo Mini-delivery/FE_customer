@@ -52,6 +52,12 @@ android {
 
 dependencies {
 
+    // Navigation
+    var nav_version = "2.7.1"
+    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation ("androidx.navigation:navigation-runtime:$nav_version")
+
     // 코루틴
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 

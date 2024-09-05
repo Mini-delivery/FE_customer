@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minidelivery_customer.MainActivity
 import com.example.minidelivery_customer.R
 import com.example.minidelivery_customer.home.HomeActivity
 import com.example.minidelivery_customer.register.RegisterActivity

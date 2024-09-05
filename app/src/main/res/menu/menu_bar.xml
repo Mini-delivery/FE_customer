@@ -4,12 +4,17 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/home"
-        android:title="@string/home" />
+        android:title="@string/home"/>
 
     <item
-        android:id="@+id/menu_like"
+        android:id="@+id/favorite"
         android:icon="@drawable/heart"
-        android:title="@string/liked" />
+        android:title="@string/favorite" />
+
+    <item
+        android:id="@+id/order"
+        android:icon="@drawable/order"
+        android:title="@string/orderList" />
 
     <item
         android:id="@+id/menu_my"

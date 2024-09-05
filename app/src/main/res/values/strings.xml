@@ -3,8 +3,11 @@
 
     <!-- Menu Bar -->
     <string name="home">Home</string>
-    <string name="liked">Liked</string>
+    <string name="favorite">Favorite</string>
+    <string name="orderList">Order List</string>
     <string name="my">My</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
