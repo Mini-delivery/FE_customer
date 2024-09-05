@@ -11,5 +11,17 @@
     <!--Main Color-->
     <color name="maincolor">#84A47C</color>
 
+    <!-- Palette -->
+    <color name="red">#EA7961</color>
+    <color name="orange">#E79B57</color>
+    <color name="yellow">#EBC461</color>
+    <color name="green">#84A47C</color>
+    <color name="blue">#667FBD</color>
+    <color name="purple">#8676A9</color>
+
+    <color name="light_grey">#F0EEEE</color>
+    <color name="dark_grey">#5D5F5C</color>
+    <color name="grey">#AAAAAA</color>
+
 
 </resources>

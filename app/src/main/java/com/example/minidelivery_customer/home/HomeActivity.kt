@@ -1,5 +1,6 @@
 package com.example.minidelivery_customer.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,9 @@ import com.example.minidelivery_customer.adapter.ViewPagerAdapter
 import com.example.minidelivery_customer.databinding.ActivityHomeBinding
 import com.example.minidelivery_customer.item.BannerItem
 import com.example.minidelivery_customer.item.FakeItem
+import com.example.minidelivery_customer.item.GridItem
 import com.example.minidelivery_customer.model.Interaction
+import com.example.minidelivery_customer.order.OrderActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -58,11 +61,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-
                     isRunning = true
                     binding.tvPageNumber.text = "${position + 1}"
-
-                    // 직접 유저가 스크롤 했을때
                     viewModel.setCurrentPosition(position)
                 }
             })
@@ -71,10 +71,25 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         binding.gridRecyclerView.apply {
             gridRecyclerViewAdapter = GridRecyclerViewAdapter()
             layoutManager = GridLayoutManager(this@HomeActivity, 4)
-
             adapter = gridRecyclerViewAdapter
+
+            // GridRecyclerViewAdapter에 클릭 리스너 설정
+            gridRecyclerViewAdapter.setOnItemClickListener(object :
+                GridRecyclerViewAdapter.OnItemClickListener {
+                override fun onItemClick(gridItem: GridItem) {
+                    // "카페·디저트" 아이템 클릭 시 OrderActivity로 이동
+                    if (gridItem.title == "카페·디저트") {
+                        val intent = Intent(this@HomeActivity, OrderActivity::class.java).apply {
+                            putExtra("category", gridItem.title)
+                        }
+                        startActivity(intent)
+                    }
+                    // 다른 아이템들에 대한 처리는 여기에 추가 가능
+                }
+            })
         }
     }
+
 
     private fun subscribeObservers() {
         viewModel.bannerItemList.observe(this, Observer { bannerItemList ->
@@ -127,6 +142,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
                         drawerLayout.openDrawer(llDrawer)
                     }
                 }
+
                 R.id.ll_left_area -> {
                     val drawerLayout = binding.root.findViewById<DrawerLayout>(R.id.drawer_layout)
                     val llDrawer = binding.root.findViewById<View>(R.id.llDrawer)
