@@ -37,8 +37,8 @@ Customer APP
 
 <h3 align="center">Order Detail</h3>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b" width="20%">
   <img src="https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53" width="20%">
+  <img src="https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b" width="20%">
 </p>
 
 
