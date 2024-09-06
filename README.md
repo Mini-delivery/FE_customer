@@ -21,18 +21,18 @@ Customer APP
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/e1c6e7c6-a93e-4912-ab6e-cf3b0cd0d6cd" width="45%">
-  <img src="https://github.com/user-attachments/assets/48ed90b6-4b84-4559-8ae2-51e1a06c4676" width="45%">
+  <img src="https://github.com/user-attachments/assets/e1c6e7c6-a93e-4912-ab6e-cf3b0cd0d6cd" width="30%">
+  <img src="https://github.com/user-attachments/assets/48ed90b6-4b84-4559-8ae2-51e1a06c4676" width="30%">
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/cf9b1448-b0dc-4bcd-ad00-d63df159fd8a" width="45%">
-  <img src="https://github.com/user-attachments/assets/5e5937c7-429d-4171-b610-90f5c4417f8c" width="45%">
+  <img src="https://github.com/user-attachments/assets/cf9b1448-b0dc-4bcd-ad00-d63df159fd8a" width="30%">
+  <img src="https://github.com/user-attachments/assets/5e5937c7-429d-4171-b610-90f5c4417f8c" width="30%">
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b" width="45%">
-  <img src="https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53" width="45%">
+  <img src="https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b" width="30%">
+  <img src="https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53" width="30%">
 </p>
 
 <p align="center">
@@ -42,7 +42,7 @@ Customer APP
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3f353d00-9d20-46ac-a664-a929d581b14b" width="45%">
+  <img src="https://github.com/user-attachments/assets/3f353d00-9d20-46ac-a664-a929d581b14b" width="30%">
 </p>
 
 
