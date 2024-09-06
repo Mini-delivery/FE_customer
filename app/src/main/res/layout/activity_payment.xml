@@ -39,10 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="Payment"
             android:textSize="44sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             tools:layout_editor_absoluteY="95dp" />
 
         <ImageView
@@ -96,7 +98,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/pretendard_bold"
-            android:text="가게 이름"
+            android:text="스타벅스 한성대입구역점"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -108,7 +110,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/pretendard_medium"
-            android:text="서울특별시 삼선교로 26길 20-2"
+            android:text="서울 성북구 성북로 11"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/storeTextView" />
@@ -130,102 +132,54 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_bold"
-            android:text="메뉴 1"
+            android:text="주문메뉴"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
-        <TextView
-            android:id="@+id/menu1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="서울특별시 삼선교로 26길 20-2"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu1TextView" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="12,000원"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu1" />
 
         <ImageView
             android:id="@+id/divider6"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/line2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price" />
+            app:layout_constraintTop_toBottomOf="@+id/menu1TextView" />
 
-        <TextView
-            android:id="@+id/menu2TextView"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartItemsRecyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/pretendard_bold"
-            android:text="메뉴 2"
-            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
-        <TextView
-            android:id="@+id/menu2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="서울특별시 삼선교로 26길 20-2"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu2TextView" />
-
-        <TextView
-            android:id="@+id/price2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="27,000원"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu2" />
-
         <ImageView
-            android:id="@+id/divider7"
+            android:id="@+id/divider8"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="5dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/line2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price2" />
+            app:layout_constraintTop_toBottomOf="@+id/cartItemsRecyclerView" />
 
         <TextView
             android:id="@+id/menuPriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="주문금액"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider7"/>
+            app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
         <TextView
             android:id="@+id/menuPrice"
@@ -238,19 +192,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintStart_toEndOf="@+id/menuPriceText"
-            app:layout_constraintTop_toBottomOf="@+id/divider7" />
+            app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
         <TextView
             android:id="@+id/deliveryPriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="배달비"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menuPriceText"/>
+            app:layout_constraintTop_toBottomOf="@+id/menuPriceText" />
 
         <TextView
             android:id="@+id/deliveryPrice"
@@ -266,7 +220,7 @@
             app:layout_constraintTop_toBottomOf="@+id/menuPrice" />
 
         <ImageView
-            android:id="@+id/divider8"
+            android:id="@+id/divider9"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="20dp"
@@ -279,13 +233,13 @@
             android:id="@+id/totalPriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="총 결제금액"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deliveryPriceText"/>
+            app:layout_constraintTop_toBottomOf="@+id/deliveryPriceText" />
 
         <TextView
             android:id="@+id/totalPrice"
@@ -299,19 +253,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintStart_toEndOf="@+id/totalPriceText"
-            app:layout_constraintTop_toBottomOf="@+id/divider8" />
+            app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
         <Button
+            android:id="@+id/paymentButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
-            android:text="결제하기"
-            android:textSize="16sp"
             android:backgroundTint="@color/maincolor"
             android:fontFamily="@font/pretendard_bold"
-            app:layout_constraintTop_toBottomOf="@+id/totalPriceText"
-            />
+            android:text="결제하기"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/totalPriceText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
