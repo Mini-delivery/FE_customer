@@ -14,34 +14,36 @@ Customer APP
 ### App Overview
 #### Login and Register
 
-<figure class="thrid">  
-  <a href="link">
-    <img src="[main](https://github.com/user-attachments/assets/bc1b6b6d-ce33-469e-8f4f-64a277d55a47)"></a>  
-  <a href="link">
-    <img src="[login](https://github.com/user-attachments/assets/effac039-fb51-4fcd-96f8-89a2f2637555)"></a>  
-  <a href="link">
-    <img src="[register](https://github.com/user-attachments/assets/d674c587-54c7-4846-9ceb-b1aeeb279121)"></a>  
-</figure>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bc1b6b6d-ce33-469e-8f4f-64a277d55a47" width="30%">
+  <img src="https://github.com/user-attachments/assets/effac039-fb51-4fcd-96f8-89a2f2637555" width="30%">
+  <img src="https://github.com/user-attachments/assets/d674c587-54c7-4846-9ceb-b1aeeb279121" width="30%">
+</p>
 
-<br>
-![4  home](https://github.com/user-attachments/assets/e1c6e7c6-a93e-4912-ab6e-cf3b0cd0d6cd)
-![5  drawerLayout](https://github.com/user-attachments/assets/48ed90b6-4b84-4559-8ae2-51e1a06c4676)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e1c6e7c6-a93e-4912-ab6e-cf3b0cd0d6cd" width="45%">
+  <img src="https://github.com/user-attachments/assets/48ed90b6-4b84-4559-8ae2-51e1a06c4676" width="45%">
+</p>
 
-<br>
-![6  order](https://github.com/user-attachments/assets/cf9b1448-b0dc-4bcd-ad00-d63df159fd8a)
-![6  order2](https://github.com/user-attachments/assets/5e5937c7-429d-4171-b610-90f5c4417f8c)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cf9b1448-b0dc-4bcd-ad00-d63df159fd8a" width="45%">
+  <img src="https://github.com/user-attachments/assets/5e5937c7-429d-4171-b610-90f5c4417f8c" width="45%">
+</p>
 
-<br>
-![7  order_detail_2](https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b)
-![7  order_detail](https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b" width="45%">
+  <img src="https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53" width="45%">
+</p>
 
-<br>
-![8  payment](https://github.com/user-attachments/assets/e5207a4e-9988-4cb2-ace0-6496a9030f10)
-![8  payment2](https://github.com/user-attachments/assets/69de39a5-cf06-4ad1-af54-0e27d8278e3d)
-![8  payment3](https://github.com/user-attachments/assets/63cdf8f9-e20f-461b-8e60-efa051ff2866)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e5207a4e-9988-4cb2-ace0-6496a9030f10" width="30%">
+  <img src="https://github.com/user-attachments/assets/69de39a5-cf06-4ad1-af54-0e27d8278e3d" width="30%">
+  <img src="https://github.com/user-attachments/assets/63cdf8f9-e20f-461b-8e60-efa051ff2866" width="30%">
+</p>
 
-<br>
-![9  paid](https://github.com/user-attachments/assets/3f353d00-9d20-46ac-a664-a929d581b14b)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3f353d00-9d20-46ac-a664-a929d581b14b" width="45%">
+</p>
 
 
 
