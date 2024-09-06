@@ -9,6 +9,31 @@ Customer APP
 ## Project Overview
 ![Project Overview](https://github.com/user-attachments/assets/6ae3f8b4-4460-4c45-b75a-b1926ffb1574)      
 
+<br><br>
+
+### App Overview
+#### Login and Register
+![1  main](https://github.com/user-attachments/assets/bc1b6b6d-ce33-469e-8f4f-64a277d55a47)
+![2  login](https://github.com/user-attachments/assets/effac039-fb51-4fcd-96f8-89a2f2637555)
+![3  register](https://github.com/user-attachments/assets/d674c587-54c7-4846-9ceb-b1aeeb279121)
+<br>
+![4  home](https://github.com/user-attachments/assets/e1c6e7c6-a93e-4912-ab6e-cf3b0cd0d6cd)
+![5  drawerLayout](https://github.com/user-attachments/assets/48ed90b6-4b84-4559-8ae2-51e1a06c4676)
+<br>
+![6  order](https://github.com/user-attachments/assets/cf9b1448-b0dc-4bcd-ad00-d63df159fd8a)
+![6  order2](https://github.com/user-attachments/assets/5e5937c7-429d-4171-b610-90f5c4417f8c)
+<br>
+![7  order_detail_2](https://github.com/user-attachments/assets/23b18601-09ff-4ad1-9fd4-3d15e11c842b)
+![7  order_detail](https://github.com/user-attachments/assets/ac69b1a0-1bce-460a-a0a5-cdeb3291bc53)
+<br>
+![8  payment](https://github.com/user-attachments/assets/e5207a4e-9988-4cb2-ace0-6496a9030f10)
+![8  payment2](https://github.com/user-attachments/assets/69de39a5-cf06-4ad1-af54-0e27d8278e3d)
+![8  payment3](https://github.com/user-attachments/assets/63cdf8f9-e20f-461b-8e60-efa051ff2866)
+<br>
+![9  paid](https://github.com/user-attachments/assets/3f353d00-9d20-46ac-a664-a929d581b14b)
+
+
+
 
 
 ## 주요 적용 기술
