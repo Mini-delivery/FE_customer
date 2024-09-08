@@ -3,18 +3,31 @@ package com.example.minidelivery_customer.register
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minidelivery_customer.R
+import com.example.minidelivery_customer.databinding.ActivityPaymentBinding
+import com.example.minidelivery_customer.databinding.ActivityRegisterBinding
 import com.example.minidelivery_customer.home.HomeActivity
+import com.example.minidelivery_customer.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupRegisterButton()
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            navigateToLoginActivity()
+        }
     }
 
     private fun setupRegisterButton() {
@@ -31,4 +44,10 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
+    // Login Activity로 이동
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
