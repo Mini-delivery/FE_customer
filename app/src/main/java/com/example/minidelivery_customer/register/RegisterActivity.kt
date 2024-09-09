@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minidelivery_customer.R
@@ -11,23 +12,27 @@ import com.example.minidelivery_customer.api.ApiService
 import com.example.minidelivery_customer.api.RetrofitClient
 import com.example.minidelivery_customer.api.SignupRequest
 import com.example.minidelivery_customer.api.SignupResponse
+import com.example.minidelivery_customer.databinding.ActivityPaymentBinding
+import com.example.minidelivery_customer.databinding.ActivityRegisterBinding
 import com.example.minidelivery_customer.home.HomeActivity
+import com.example.minidelivery_customer.login.LoginActivity
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding
+  
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var nickNameEditText: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         emailEditText = findViewById(R.id.email)
         passwordEditText = findViewById(R.id.password)
@@ -35,6 +40,14 @@ class RegisterActivity : AppCompatActivity() {
 
 
         setupRegisterButton()
+        setupToolbar()
+    }
+
+    // Back Button : 이전화면으로 이동
+    private fun setupToolbar() {
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupRegisterButton() {
@@ -83,4 +96,10 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
+    // Login Activity로 이동
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

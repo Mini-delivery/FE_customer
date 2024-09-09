@@ -19,7 +19,7 @@ import com.example.minidelivery_customer.item.BannerItem
 import com.example.minidelivery_customer.item.FakeItem
 import com.example.minidelivery_customer.item.GridItem
 import com.example.minidelivery_customer.model.Interaction
-import com.example.minidelivery_customer.order.OrderActivity
+import com.example.minidelivery_customer.order.cafe.CafeActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -77,14 +77,30 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             gridRecyclerViewAdapter.setOnItemClickListener(object :
                 GridRecyclerViewAdapter.OnItemClickListener {
                 override fun onItemClick(gridItem: GridItem) {
+
                     // "카페·디저트" 아이템 클릭 시 OrderActivity로 이동
                     if (gridItem.title == "카페·디저트") {
-                        val intent = Intent(this@HomeActivity, OrderActivity::class.java).apply {
+                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
                             putExtra("category", gridItem.title)
                         }
                         startActivity(intent)
                     }
-                    // 다른 아이템들에 대한 처리는 여기에 추가 가능
+                    // "한식" 아이템 클릭 시 OrderActivity로 이동
+                    if (gridItem.title == "한식") {
+                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
+                            putExtra("category", gridItem.title)
+                        }
+                        startActivity(intent)
+                    }
+
+                    // "치킨" 아이템 클릭 시 OrderActivity로 이동
+                    if (gridItem.title == "치킨") {
+                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
+                            putExtra("category", gridItem.title)
+                        }
+                        startActivity(intent)
+                    }
+
                 }
             })
         }

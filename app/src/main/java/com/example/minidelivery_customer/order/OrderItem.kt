@@ -1,7 +1,7 @@
 package com.example.minidelivery_customer.order
 
-// CafeItem 데이터 클래스 정의
-data class CafeItem(
+// OrderItem 데이터 클래스 정의
+data class OrderItem(
     val name: String,
     val rating: String,
     val reviews: String,

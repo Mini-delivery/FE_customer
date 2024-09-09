@@ -1,4 +1,4 @@
-package com.example.minidelivery_customer.order
+package com.example.minidelivery_customer.order.cafe
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,16 +6,19 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.minidelivery_customer.R
-import com.example.minidelivery_customer.databinding.ActivityOrderDetailBinding
+import com.example.minidelivery_customer.databinding.ActivityCafeDetailBinding
+import com.example.minidelivery_customer.order.CartItem
+import com.example.minidelivery_customer.order.MenuAdapter
+import com.example.minidelivery_customer.order.MenuItem
 import com.example.minidelivery_customer.payment.PaymentActivity
 
-class OrderDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityOrderDetailBinding
+class CafeDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCafeDetailBinding
     private val cartItems = mutableMapOf<MenuItem, Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOrderDetailBinding.inflate(layoutInflater)
+        binding = ActivityCafeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupToolbar()
@@ -24,6 +27,7 @@ class OrderDetailActivity : AppCompatActivity() {
         updateCartCount()
     }
 
+    // Back Button : 이전화면으로 이동
     private fun setupToolbar() {
         binding.backButton.setOnClickListener {
             onBackPressed()
@@ -32,7 +36,7 @@ class OrderDetailActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.menuRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@OrderDetailActivity)
+            layoutManager = LinearLayoutManager(this@CafeDetailActivity)
             adapter = MenuAdapter(getFakeMenuItems()) { menuItem ->
                 addToCart(menuItem)
             }
