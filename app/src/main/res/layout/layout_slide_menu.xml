@@ -42,6 +42,7 @@
                         android:src="@drawable/profile" />
 
                     <TextView
+                        android:id="@+id/nicknameTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
