@@ -21,6 +21,7 @@ class PaymentActivity : AppCompatActivity() {
         setupToolbar()
         setupCartItems()
         setupPaymentButton()
+
     }
 
     private fun setupToolbar() {
@@ -55,6 +56,8 @@ class PaymentActivity : AppCompatActivity() {
     private fun setupPaymentButton() {
         binding.paymentButton.setOnClickListener {
             // PaidActivity로 이동
+            // request
+
             val intent = Intent(this, PaidActivity::class.java)
             startActivity(intent)
             finish() // 현재 액티비티를 종료
