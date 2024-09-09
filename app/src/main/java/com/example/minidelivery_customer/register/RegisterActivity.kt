@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minidelivery_customer.R
-import com.example.minidelivery_customer.api.ApiService
 import com.example.minidelivery_customer.api.RetrofitClient
 import com.example.minidelivery_customer.api.SignupRequest
 import com.example.minidelivery_customer.api.SignupResponse
-import com.example.minidelivery_customer.databinding.ActivityPaymentBinding
 import com.example.minidelivery_customer.databinding.ActivityRegisterBinding
 import com.example.minidelivery_customer.home.HomeActivity
 import com.example.minidelivery_customer.login.LoginActivity

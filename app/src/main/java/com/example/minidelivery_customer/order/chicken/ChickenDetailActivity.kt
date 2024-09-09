@@ -19,7 +19,7 @@ class ChickenDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChickenDetailBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_chicken_detail)
+        setContentView(binding.root)
 
         setupToolbar()
         setupRecyclerView()
@@ -27,7 +27,6 @@ class ChickenDetailActivity : AppCompatActivity() {
         updateCartCount()
     }
 
-    // Back Button : 이전화면으로 이동
     private fun setupToolbar() {
         binding.backButton.setOnClickListener {
             onBackPressed()
@@ -37,7 +36,7 @@ class ChickenDetailActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.menuRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@ChickenDetailActivity)
-            adapter = MenuAdapter(getFakeMenuItems()) { menuItem ->
+            adapter = MenuAdapter(getFakeChickenMenuItems()) { menuItem ->
                 addToCart(menuItem)
             }
         }
@@ -54,7 +53,6 @@ class ChickenDetailActivity : AppCompatActivity() {
         binding.cartCount.visibility = if (totalCount > 0) View.VISIBLE else View.GONE
     }
 
-
     private fun setupOrderButton() {
         binding.orderButton.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
@@ -66,17 +64,17 @@ class ChickenDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getFakeMenuItems(): List<MenuItem> {
+    private fun getFakeChickenMenuItems(): List<MenuItem> {
         return listOf(
-            MenuItem("chicken", "4,500원", R.drawable.americano),
-            MenuItem("chicken", "5,500원", R.drawable.affogato),
-            MenuItem("chicken", "7,500원", R.drawable.coffe_sparkling),
-            MenuItem("chicken", "8,500원", R.drawable.latte_shakerato),
-            MenuItem("chicken", "7,000원", R.drawable.latte_lavender),
-            MenuItem("chicken", "6,700원", R.drawable.latte_glazed),
-            MenuItem("chicken", "7,200원", R.drawable.latte_french),
-            MenuItem("chicken", "6,800원", R.drawable.shake_passion),
-            MenuItem("chicken", "6,800원", R.drawable.shake_mango)
+            MenuItem("굽네 오리지널", "16,000원", R.drawable.goobne_original),
+            MenuItem("굽네 고추바사삭", "17,000원", R.drawable.goobne_gochujang),
+            MenuItem("굽네 치즈바사삭", "19,000원", R.drawable.goobne_cheese),
+            MenuItem("굽네 갈비천왕", "18,000원", R.drawable.goobne_galbi),
+            MenuItem("굽네 볼케이노", "18,000원", R.drawable.goobne_volcano),
+            MenuItem("폭립", "18,000원", R.drawable.ribs),
+            MenuItem("트리플 포테이토 피자", "14,000원", R.drawable.potato_pizza),
+            MenuItem("바질&토마토 피자", "9,000원", R.drawable.bazil_pizza),
+            MenuItem("시카고 딥디쉬 피자", "18,000원", R.drawable.chicago_pizza)
         )
     }
 }

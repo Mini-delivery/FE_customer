@@ -2,10 +2,7 @@ package com.example.minidelivery_customer.order.korean
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.minidelivery_customer.R
 import com.example.minidelivery_customer.databinding.ActivityKoreanBinding
@@ -18,24 +15,21 @@ class KoreanActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKoreanBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_korean)
+        setContentView(binding.root)
 
         setupToolbar()
         setupRecyclerView()
     }
 
-    // Back Button : 이전화면으로 이동
     private fun setupToolbar() {
-        // 뒤로가기 버튼 설정
         binding.backButton.setOnClickListener {
             onBackPressed()
         }
     }
 
     private fun setupRecyclerView() {
-        binding.cafeRecyclerView.apply {
+        binding.koreanRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@KoreanActivity)
-            // OrderAdapter 설정 및 클릭 리스너 구현
             adapter = OrderAdapter(getFakeKoreanItems()) { koreanItem ->
                 val intent = Intent(this@KoreanActivity, KoreanDetailActivity::class.java).apply {
                     putExtra("koreanItem", koreanItem)
@@ -45,15 +39,14 @@ class KoreanActivity : AppCompatActivity() {
         }
     }
 
-    // 임시 한식 아이템 생성
     private fun getFakeKoreanItems(): List<OrderItem> {
         return listOf(
-            OrderItem("한식", "3.7", "4,282", "1.1km", "무료배달", "27분", R.drawable.starbucks),
-            OrderItem("한식", "4.4", "1,751", "1.6km", "2,000원", "42분", R.drawable.soseolwon),
-            OrderItem("한식", "4.1", "689", "2.9km", "1,500원", "59분", R.drawable.saamann),
-            OrderItem("한식", "4.7", "828", "4.8km", "무료배달", "61분", R.drawable.spectre),
-            OrderItem("한식", "4.2", "1,296", "7.5km", "3,000원", "54분", R.drawable.samwonsac),
-            OrderItem("한식", "4.9", "563", "2.4km", "무료배달", "34분", R.drawable.hywha)
+            OrderItem("백채김치찌개 한성대점", "4.3", "2,982", "0.7km", "무료배달", "30분", R.drawable.back_kimchi),
+            OrderItem("청년감자탕 성북점", "4.6", "3,151", "1.5km", "1,000원", "38분", R.drawable.gamjatang),
+            OrderItem("엄마손칼국수 동소문점", "4.2", "1,789", "2.3km", "2,000원", "42분", R.drawable.kalguksu),
+            OrderItem("할매순대국 삼선교점", "4.4", "2,228", "3.0km", "무료배달", "47분", R.drawable.sundaeguk),
+            OrderItem("대한곱창 혜화점", "4.5", "1,896", "4.2km", "2,500원", "52분", R.drawable.gopchang),
+            OrderItem("귀한족발 성북점", "4.1", "1,663", "2.6km", "무료배달", "40분", R.drawable.jokbal)
         )
     }
 }

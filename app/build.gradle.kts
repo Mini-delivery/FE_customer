@@ -55,6 +55,7 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
     // Navigation
     var nav_version = "2.7.1"
     implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")

@@ -20,6 +20,8 @@ import com.example.minidelivery_customer.item.FakeItem
 import com.example.minidelivery_customer.item.GridItem
 import com.example.minidelivery_customer.model.Interaction
 import com.example.minidelivery_customer.order.cafe.CafeActivity
+import com.example.minidelivery_customer.order.chicken.ChickenActivity
+import com.example.minidelivery_customer.order.korean.KoreanActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -78,24 +80,24 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
                 GridRecyclerViewAdapter.OnItemClickListener {
                 override fun onItemClick(gridItem: GridItem) {
 
-                    // "카페·디저트" 아이템 클릭 시 OrderActivity로 이동
+                    // "카페·디저트" 아이템 클릭 시 CafeActivity로 이동
                     if (gridItem.title == "카페·디저트") {
                         val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
                             putExtra("category", gridItem.title)
                         }
                         startActivity(intent)
                     }
-                    // "한식" 아이템 클릭 시 OrderActivity로 이동
+                    // "한식" 아이템 클릭 시 KoreanActivity로 이동
                     if (gridItem.title == "한식") {
-                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
+                        val intent = Intent(this@HomeActivity, KoreanActivity::class.java).apply {
                             putExtra("category", gridItem.title)
                         }
                         startActivity(intent)
                     }
 
-                    // "치킨" 아이템 클릭 시 OrderActivity로 이동
+                    // "치킨" 아이템 클릭 시 ChickenActivity로 이동
                     if (gridItem.title == "치킨") {
-                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
+                        val intent = Intent(this@HomeActivity, ChickenActivity::class.java).apply {
                             putExtra("category", gridItem.title)
                         }
                         startActivity(intent)

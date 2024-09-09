@@ -19,7 +19,7 @@ class KoreanDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKoreanDetailBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_korean_detail)
+        setContentView(binding.root)
 
         setupToolbar()
         setupRecyclerView()
@@ -27,7 +27,6 @@ class KoreanDetailActivity : AppCompatActivity() {
         updateCartCount()
     }
 
-    // Back Button : 이전화면으로 이동
     private fun setupToolbar() {
         binding.backButton.setOnClickListener {
             onBackPressed()
@@ -37,7 +36,7 @@ class KoreanDetailActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.menuRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@KoreanDetailActivity)
-            adapter = MenuAdapter(getFakeMenuItems()) { menuItem ->
+            adapter = MenuAdapter(getFakeKoreanMenuItems()) { menuItem ->
                 addToCart(menuItem)
             }
         }
@@ -54,7 +53,6 @@ class KoreanDetailActivity : AppCompatActivity() {
         binding.cartCount.visibility = if (totalCount > 0) View.VISIBLE else View.GONE
     }
 
-
     private fun setupOrderButton() {
         binding.orderButton.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
@@ -66,17 +64,16 @@ class KoreanDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getFakeMenuItems(): List<MenuItem> {
+    private fun getFakeKoreanMenuItems(): List<MenuItem> {
         return listOf(
-            MenuItem("korean", "4,500원", R.drawable.americano),
-            MenuItem("korean", "5,500원", R.drawable.affogato),
-            MenuItem("korean", "7,500원", R.drawable.coffe_sparkling),
-            MenuItem("korean", "8,500원", R.drawable.latte_shakerato),
-            MenuItem("korean", "7,000원", R.drawable.latte_lavender),
-            MenuItem("korean", "6,700원", R.drawable.latte_glazed),
-            MenuItem("korean", "7,200원", R.drawable.latte_french),
-            MenuItem("korean", "6,800원", R.drawable.shake_passion),
-            MenuItem("korean", "6,800원", R.drawable.shake_mango)
+            MenuItem("백채 김치찌개", "9,000원", R.drawable.kimchi_stew),
+            MenuItem("돼지김치찌개", "10,000원", R.drawable.pork_kimchi_stew),
+            MenuItem("스팸김치찌개", "9,500원", R.drawable.spam_kimchi_stew),
+            MenuItem("백채주물럭", "11,000원", R.drawable.jumuluck),
+            MenuItem("스팸구이", "8,000원", R.drawable.spam),
+            MenuItem("계란말이", "7,000원", R.drawable.egg_roll),
+            MenuItem("라면사리", "3,500원", R.drawable.ramen_saegi),
+            MenuItem("공기밥", "1,500원", R.drawable.rice)
         )
     }
 }
