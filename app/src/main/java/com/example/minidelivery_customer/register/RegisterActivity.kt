@@ -24,9 +24,10 @@ class RegisterActivity : AppCompatActivity() {
         setupToolbar()
     }
 
+    // Back Button : 이전화면으로 이동
     private fun setupToolbar() {
         findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            navigateToLoginActivity()
+            onBackPressed()
         }
     }
 
