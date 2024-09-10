@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".myPage.MyPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".orderhistory.OrderDetailActivity"
             android:exported="false" />
         <activity
@@ -45,8 +48,14 @@
             android:exported="false" />
         <activity
             android:name=".home.HomeActivity"
-            android:exported="false"
-            android:launchMode="singleTask" />
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".register.RegisterActivity"
             android:exported="false" />
@@ -60,13 +69,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

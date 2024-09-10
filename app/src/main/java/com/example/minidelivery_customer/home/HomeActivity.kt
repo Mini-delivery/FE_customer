@@ -19,6 +19,7 @@ import com.example.minidelivery_customer.item.BannerItem
 import com.example.minidelivery_customer.item.FakeItem
 import com.example.minidelivery_customer.item.GridItem
 import com.example.minidelivery_customer.model.Interaction
+import com.example.minidelivery_customer.myPage.MyPageActivity
 import com.example.minidelivery_customer.order.cafe.CafeActivity
 import com.example.minidelivery_customer.order.chicken.ChickenActivity
 import com.example.minidelivery_customer.order.korean.KoreanActivity
@@ -64,6 +65,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         initViewPager2()
         subscribeObservers()
         autoScrollViewPager()
+        setupMyPageButton()
+    }
+
+    // 마이페이지 액티비티 시작 함수
+    private fun setupMyPageButton() {
+        binding.llDrawer.myPage.setOnClickListener {
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // 주문 내역 액티비티 시작 함수
