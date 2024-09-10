@@ -5,16 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minidelivery_customer.R
 import com.example.minidelivery_customer.api.RetrofitClient
 import com.example.minidelivery_customer.api.SigninRequest
 import com.example.minidelivery_customer.api.SigninResponse
-import com.example.minidelivery_customer.api.SignupRequest
-import com.example.minidelivery_customer.api.SignupResponse
 import com.example.minidelivery_customer.home.HomeActivity
 import com.example.minidelivery_customer.register.RegisterActivity
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // 로그인 화면을 관리하는 액티비티
 class LoginActivity : AppCompatActivity() {
@@ -44,34 +45,43 @@ class LoginActivity : AppCompatActivity() {
     private fun setupSignInButton() {
         val signInButton: Button = findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
+            // 입력값 가져오기
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            // 입력값 유효성 검사
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "이메일과 비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             // 로그인 요청 객체 생성
-            val signinRequest = SigninRequest(loginId = emailEditText.text.toString(), password = passwordEditText.text.toString())
+            val signinRequest = SigninRequest(loginId = email, password = password)
 
             // Retrofit을 사용하여 서버에 로그인 요청
-            RetrofitClient.instance.loginUser(signinRequest).enqueue(object : retrofit2.Callback<SigninResponse> {
+            RetrofitClient.instance.loginUser(signinRequest).enqueue(object : Callback<SigninResponse> {
                 // 서버 응답 처리
-                override fun onResponse(call: Call<SigninResponse>, response: retrofit2.Response<SigninResponse>) {
+                override fun onResponse(call: Call<SigninResponse>, response: Response<SigninResponse>) {
                     if (response.isSuccessful) {
                         val result = response.body()
                         result?.let {
                             if (it.success) {
-                                println("System: ${it.message}") // 로그인 성공 메시지 출력
+                                Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                                navigateToHomeActivity() // 홈 화면으로 이동
                             } else {
-                                println("System: ${it.message}") // 로그인 실패 메시지 출력
+                                Toast.makeText(this@LoginActivity, "로그인 실패: ${it.message}", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
-                        println("서버 응답 오류: ${response.code()}") // 서버 오류 처리
+                        Toast.makeText(this@LoginActivity, "서버 응답 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 // 네트워크 오류 처리
                 override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
-                    println("통신 실패: ${t.message}")
+                    Toast.makeText(this@LoginActivity, "통신 실패: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
-
-            navigateToHomeActivity() // 홈 화면으로 이동
         }
     }
 

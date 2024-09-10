@@ -2,6 +2,7 @@ package com.example.minidelivery_customer.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minidelivery_customer.api.RetrofitClient
@@ -42,9 +43,24 @@ class RegisterActivity : AppCompatActivity() {
             val address = binding.address.text.toString()
             val nickname = binding.nickname.text.toString()
 
+            // 이메일 유효성 검사
+            // 조건: 이메일 형식(@와 . 포함)
+            if (!isValidEmail(email)) {
+                Toast.makeText(this, "이메일 형식에 맞지 않습니다. 이메일을 수정해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // 비밀번호 유효성 검사
+            // 조건: 4글자 이상
+            if (password.length < 4) {
+                Toast.makeText(this, "비밀번호는 4글자 이상이어야합니다. 수정해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             // 비밀번호 확인 체크
+            // 조건: password와 passwordCheck가 일치해야 함
             if (password != passwordCheck) {
-                Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "비밀번호가 일치하지 않습니다. 수정해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -76,6 +92,11 @@ class RegisterActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    // 이메일 유효성 검사 함수
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches() // 안드로이드에서 제공하는 이메일 패턴 검사 사용
     }
 
     // 홈 화면으로 이동하는 함수
