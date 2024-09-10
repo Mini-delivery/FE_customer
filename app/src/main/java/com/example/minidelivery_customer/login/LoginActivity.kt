@@ -16,12 +16,13 @@ import com.example.minidelivery_customer.home.HomeActivity
 import com.example.minidelivery_customer.register.RegisterActivity
 import retrofit2.Call
 
+// 로그인 화면을 관리하는 액티비티
 class LoginActivity : AppCompatActivity() {
-    private lateinit var emailEditText: EditText
-    private lateinit var passwordEditText: EditText
+    private lateinit var emailEditText: EditText // 이메일 입력 필드
+    private lateinit var passwordEditText: EditText // 비밀번호 입력 필드
 
     companion object {
-        // Creates an Intent to start the LoginActivity.
+        // LoginActivity를 시작하는 Intent를 생성하는 함수
         fun getIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
         }
@@ -29,70 +30,70 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_login) // 레이아웃 설정
 
+        // 뷰 초기화
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
 
-
-        setupSignInButton()
-        setupSignUpButton()
+        setupSignInButton() // 로그인 버튼 설정
+        setupSignUpButton() // 회원가입 버튼 설정
     }
 
+    // 로그인 버튼 설정 및 동작 정의
     private fun setupSignInButton() {
         val signInButton: Button = findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
+            // 로그인 요청 객체 생성
             val signinRequest = SigninRequest(loginId = emailEditText.text.toString(), password = passwordEditText.text.toString())
 
+            // Retrofit을 사용하여 서버에 로그인 요청
             RetrofitClient.instance.loginUser(signinRequest).enqueue(object : retrofit2.Callback<SigninResponse> {
+                // 서버 응답 처리
                 override fun onResponse(call: Call<SigninResponse>, response: retrofit2.Response<SigninResponse>) {
                     if (response.isSuccessful) {
-                        // 서버 응답 성공 처리
                         val result = response.body()
                         result?.let {
                             if (it.success) {
-                                // 회원가입 성공
-                                println("System: ${it.message}")
+                                println("System: ${it.message}") // 로그인 성공 메시지 출력
                             } else {
-                                // 서버에서 회원가입 실패 처리
-                                println("System: ${it.message}")
+                                println("System: ${it.message}") // 로그인 실패 메시지 출력
                             }
                         }
                     } else {
-                        // 서버 오류 처리
-                        println("서버 응답 오류: ${response.code()}")
+                        println("서버 응답 오류: ${response.code()}") // 서버 오류 처리
                     }
                 }
 
+                // 네트워크 오류 처리
                 override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
-                    // 네트워크 오류 처리
                     println("통신 실패: ${t.message}")
                 }
             })
 
-            navigateToHomeActivity()
+            navigateToHomeActivity() // 홈 화면으로 이동
         }
     }
 
+    // 회원가입 버튼 설정 및 동작 정의
     private fun setupSignUpButton() {
         val signUpButton: Button = findViewById(R.id.signUpButton)
         signUpButton.setOnClickListener {
-            navigateToRegisterActivity()
+            navigateToRegisterActivity() // 회원가입 화면으로 이동
         }
     }
 
-    // Home Activity로 이동
+    // 홈 화면으로 이동하는 함수
     private fun navigateToHomeActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
-        finish()
+        finish() // 현재 액티비티 종료
     }
 
-    // Register Activity로 이동
+    // 회원가입 화면으로 이동하는 함수
     private fun navigateToRegisterActivity() {
-        // Assuming you have a RegisterActivity. If not, you might want to create one or navigate to appropriate screen.
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
-        // Not finishing this activity as user might want to come back to login screen
+        // 현재 액티비티를 종료하지 않음 (사용자가 로그인 화면으로 돌아올 수 있도록)
     }
 }

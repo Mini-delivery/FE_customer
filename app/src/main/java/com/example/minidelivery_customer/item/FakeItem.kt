@@ -2,6 +2,7 @@ package com.example.minidelivery_customer.item
 
 import com.example.minidelivery_customer.R
 
+// 배너 아이템
 class FakeItem {
     val fakeBannerItemList = listOf(
         BannerItem(R.drawable.banner1),
@@ -11,6 +12,7 @@ class FakeItem {
         BannerItem(R.drawable.banner5)
     )
 
+    // Grid View Icon
     val fakeGridItemList = listOf(
         GridItem(R.drawable.a, "1인분"),
         GridItem(R.drawable.d, "한식"),
