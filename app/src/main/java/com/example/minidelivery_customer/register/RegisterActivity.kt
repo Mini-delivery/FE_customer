@@ -2,101 +2,86 @@ package com.example.minidelivery_customer.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minidelivery_customer.R
 import com.example.minidelivery_customer.api.RetrofitClient
 import com.example.minidelivery_customer.api.SignupRequest
 import com.example.minidelivery_customer.api.SignupResponse
 import com.example.minidelivery_customer.databinding.ActivityRegisterBinding
 import com.example.minidelivery_customer.home.HomeActivity
-import com.example.minidelivery_customer.login.LoginActivity
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRegisterBinding
-  
-    private lateinit var emailEditText: EditText
-    private lateinit var passwordEditText: EditText
-    private lateinit var nickNameEditText: EditText
+    private lateinit var binding: ActivityRegisterBinding // 뷰 바인딩 객체
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = ActivityRegisterBinding.inflate(layoutInflater) // 뷰 바인딩 초기화
+        setContentView(binding.root) // 레이아웃 설정
 
-        emailEditText = findViewById(R.id.email)
-        passwordEditText = findViewById(R.id.password)
-        nickNameEditText = findViewById(R.id.nickName)
-
-
-        setupRegisterButton()
-        setupToolbar()
+        setupToolbar() // 툴바 설정
+        setupRegisterButton() // 회원가입 버튼 설정
     }
 
-    // Back Button : 이전화면으로 이동
+    // 툴바 설정 (뒤로 가기 버튼)
     private fun setupToolbar() {
-        findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            onBackPressed()
+        binding.backButton.setOnClickListener {
+            onBackPressed() // 뒤로 가기 기능 실행
         }
     }
 
+    // 회원가입 버튼 설정 및 기능 구현
     private fun setupRegisterButton() {
-        val signInButton: Button = findViewById(R.id.registerButton)
-        signInButton.setOnClickListener {
-            val signupRequest = SignupRequest(loginId = emailEditText.text.toString(),
-                password = passwordEditText.text.toString(),
-                passwordCheck = passwordEditText.text.toString(),
-                address = "서울특별시 성북구 삼선교로 7번길 한성대학교",
-                nickname = nickNameEditText.text.toString())
+        binding.registerButton.setOnClickListener {
+            // 입력 필드에서 데이터 가져오기
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            val passwordCheck = binding.passwordCheck.text.toString()
+            val address = binding.address.text.toString()
+            val nickname = binding.nickname.text.toString()
 
-            RetrofitClient.instance.registerUser(signupRequest).enqueue(object : retrofit2.Callback<SignupResponse> {
-                override fun onResponse(call: Call<SignupResponse>, response: retrofit2.Response<SignupResponse>) {
+            // 비밀번호 확인 체크
+            if (password != passwordCheck) {
+                Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // 회원가입 요청 객체 생성
+            val signupRequest = SignupRequest(loginId = email, password = password, passwordCheck = passwordCheck, address = address, nickname = nickname)
+
+            // Retrofit을 사용하여 서버에 회원가입 요청
+            RetrofitClient.instance.registerUser(signupRequest).enqueue(object : Callback<SignupResponse> {
+                // 서버 응답 처리
+                override fun onResponse(call: Call<SignupResponse>, response: Response<SignupResponse>) {
                     if (response.isSuccessful) {
-                        // 서버 응답 성공 처리
                         val result = response.body()
                         result?.let {
                             if (it.success) {
-                                // 회원가입 성공
-                                println("System: ${it.message}")
+                                Toast.makeText(this@RegisterActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                                navigateToHomeActivity() // 홈 화면으로 이동
                             } else {
-                                // 서버에서 회원가입 실패 처리
-                                println("System: ${it.message}")
+                                Toast.makeText(this@RegisterActivity, it.message, Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
-                        // 서버 오류 처리
-                        println("서버 응답 오류: ${response.code()}")
+                        Toast.makeText(this@RegisterActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
                 }
 
+                // 네트워크 오류 처리
                 override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                    // 네트워크 오류 처리
-                    println("통신 실패: ${t.message}")
+                    Toast.makeText(this@RegisterActivity, "통신 실패: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
-
-            navigateToHomeActivity()
         }
     }
 
-    // Home Activity로 이동
+    // 홈 화면으로 이동하는 함수
     private fun navigateToHomeActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
-        finish()
-    }
-
-    // Login Activity로 이동
-    private fun navigateToLoginActivity() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        finish() // 현재 액티비티 종료
     }
 }

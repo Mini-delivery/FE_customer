@@ -67,33 +67,80 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerTextView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailInputLayout"
+        <!-- 이메일 입력 필드 -->
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="#E3E3E3"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeWidth="0dp"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColorHint="#757575"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/enterPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccount"
+        tools:ignore="NotSibling,UselessParent">
+
+        <TextView
+            android:id="@+id/passwordTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="Enter your Password"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoTextView">
+            app:layout_constraintTop_toBottomOf="@+id/confirmButton" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColorHint="#757575"
-                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        <!-- 비밀번호 입력 필드 -->
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="#757575"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <!-- 비밀번호 확인 입력 필드 -->
+        <EditText
+            android:id="@+id/passwordCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Check Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="#757575"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
     </LinearLayout>
 
@@ -107,7 +154,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAccount"
+        app:layout_constraintTop_toBottomOf="@+id/enterPassword"
         tools:ignore="NotSibling,UselessParent">
 
         <TextView
@@ -115,73 +162,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="Enter more Information!"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmButton" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nickNameInputLayout"
+        <!-- 주소 입력 필드 -->
+        <EditText
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="#E3E3E3"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileTextView">
+            android:hint="Address"
+            android:inputType="textPostalAddress"
+            android:maxLines="1"
+            android:textColorHint="#757575"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
-            <EditText
-                android:id="@+id/nickName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColorHint="#757575"
-                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordInputLayout"
+        <!-- 사용자 이름 입력 필드 -->
+        <EditText
+            android:id="@+id/nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="#E3E3E3"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nickNameInputLayout"
-            app:passwordToggleEnabled="true">
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColorHint="#757575"
-                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="User Name"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textColorHint="#757575"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
 
     </LinearLayout>
+
 
     <Button
         android:id="@+id/registerButton"
@@ -189,7 +210,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:text="Register"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
