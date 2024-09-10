@@ -1,8 +1,11 @@
 package com.example.minidelivery_customer.order.chicken
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.minidelivery_customer.R
@@ -10,18 +13,27 @@ import com.example.minidelivery_customer.databinding.ActivityChickenDetailBindin
 import com.example.minidelivery_customer.order.CartItem
 import com.example.minidelivery_customer.order.MenuAdapter
 import com.example.minidelivery_customer.order.MenuItem
+import com.example.minidelivery_customer.order.OrderItem
 import com.example.minidelivery_customer.payment.PaymentActivity
 
 class ChickenDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChickenDetailBinding
     private val cartItems = mutableMapOf<MenuItem, Int>()
+    private lateinit var orderItem: OrderItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChickenDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        orderItem = intent.getSerializableExtra("orderItem") as? OrderItem ?: run {
+            Toast.makeText(this, "가게 정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
         setupToolbar()
+        setupStoreInfo()
         setupRecyclerView()
         setupOrderButton()
         updateCartCount()
@@ -29,8 +41,14 @@ class ChickenDetailActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         binding.backButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    private fun setupStoreInfo() {
+        binding.detailImage.setImageResource(orderItem.imageResId)
+        binding.storeName.text = orderItem.name
+        binding.storeRating.text = "⭐ ${orderItem.rating} (${orderItem.reviews})"
     }
 
     private fun setupRecyclerView() {
@@ -60,6 +78,7 @@ class ChickenDetailActivity : AppCompatActivity() {
                 CartItem(item.name, item.price, quantity, item.imageResId)
             }
             intent.putParcelableArrayListExtra("cartItems", ArrayList(cartItemList))
+            intent.putExtra("orderItem", orderItem)
             startActivity(intent)
         }
     }

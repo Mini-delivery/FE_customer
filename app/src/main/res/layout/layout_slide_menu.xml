@@ -109,7 +109,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -157,6 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="쿠폰함" />
                 </LinearLayout>
 
@@ -185,6 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="장바구니" />
                 </LinearLayout>
 
@@ -202,6 +205,7 @@
                 android:padding="10dp">
 
                 <LinearLayout
+                    android:id="@+id/orderHistory"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -210,6 +214,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/orderHistoryIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -219,6 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="주문내역" />
                 </LinearLayout>
 
@@ -246,6 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="찜한가게" />
                 </LinearLayout>
 
@@ -274,6 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pretendard_bold"
                         android:text="리뷰관리" />
                 </LinearLayout>
             </LinearLayout>

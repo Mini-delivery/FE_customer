@@ -32,7 +32,7 @@ class ChickenActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@ChickenActivity)
             adapter = OrderAdapter(getFakeChickenItems()) { chickenItem ->
                 val intent = Intent(this@ChickenActivity, ChickenDetailActivity::class.java).apply {
-                    putExtra("chickenItem", chickenItem)
+                    putExtra("orderItem", chickenItem)
                 }
                 startActivity(intent)
             }
@@ -41,7 +41,16 @@ class ChickenActivity : AppCompatActivity() {
 
     private fun getFakeChickenItems(): List<OrderItem> {
         return listOf(
-            OrderItem("굽네치킨 삼선교점", "4.3", "1,628", "3.2km", "무료배달", "50분", R.drawable.goobne),
+            OrderItem(
+                "굽네치킨 삼선교점",
+                "4.3",
+                "1,628",
+                "3.2km",
+                "무료배달",
+                "50분",
+                R.drawable.goobne,
+                "서울시 성북구 삼선교로 16길 116"
+            ),
         )
     }
 }

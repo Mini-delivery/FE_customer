@@ -68,6 +68,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/storeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="가게이름"
@@ -76,6 +77,7 @@
                         android:fontFamily="@font/pretendard_bold"/>
 
                     <TextView
+                        android:id="@+id/storeRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="⭐ 4.8 (1,428)"

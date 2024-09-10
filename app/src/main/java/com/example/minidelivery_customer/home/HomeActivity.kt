@@ -22,6 +22,7 @@ import com.example.minidelivery_customer.model.Interaction
 import com.example.minidelivery_customer.order.cafe.CafeActivity
 import com.example.minidelivery_customer.order.chicken.ChickenActivity
 import com.example.minidelivery_customer.order.korean.KoreanActivity
+import com.example.minidelivery_customer.orderhistory.OrderHistoryActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -38,7 +39,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root) // setContentView(R.layout.activity_home)
+        setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(HomeActivityViewModel::class.java)
 
@@ -50,13 +51,29 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         binding.ivHamburger.setOnClickListener(this)
         binding.llDrawer.llLeftArea.setOnClickListener(this)
 
+        // 주문 내역 아이콘 클릭 리스너 설정 (툴바)
+        binding.orderHistoryIcon.setOnClickListener {
+            startOrderHistoryActivity()
+        }
+
+        // 슬라이드 메뉴의 주문 내역 클릭 리스너 설정
+        binding.llDrawer.orderHistory.setOnClickListener {
+            startOrderHistoryActivity()
+        }
+
         initViewPager2()
         subscribeObservers()
         autoScrollViewPager()
     }
 
+    // 주문 내역 액티비티 시작 함수
+    private fun startOrderHistoryActivity() {
+        val intent = Intent(this, OrderHistoryActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun initViewPager2() {
+        // ViewPager2 초기화 및 설정
         binding.viewPager2.apply {
             viewPagerAdapter = ViewPagerAdapter(this@HomeActivity)
             adapter = viewPagerAdapter
@@ -70,6 +87,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             })
         }
 
+        // GridRecyclerView 초기화 및 설정
         binding.gridRecyclerView.apply {
             gridRecyclerViewAdapter = GridRecyclerViewAdapter()
             layoutManager = GridLayoutManager(this@HomeActivity, 4)
@@ -79,37 +97,19 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             gridRecyclerViewAdapter.setOnItemClickListener(object :
                 GridRecyclerViewAdapter.OnItemClickListener {
                 override fun onItemClick(gridItem: GridItem) {
-
-                    // "카페·디저트" 아이템 클릭 시 CafeActivity로 이동
-                    if (gridItem.title == "카페·디저트") {
-                        val intent = Intent(this@HomeActivity, CafeActivity::class.java).apply {
-                            putExtra("category", gridItem.title)
-                        }
-                        startActivity(intent)
+                    // 클릭된 아이템에 따라 해당 액티비티로 이동
+                    when (gridItem.title) {
+                        "카페·디저트" -> startActivity(Intent(this@HomeActivity, CafeActivity::class.java))
+                        "한식" -> startActivity(Intent(this@HomeActivity, KoreanActivity::class.java))
+                        "치킨" -> startActivity(Intent(this@HomeActivity, ChickenActivity::class.java))
                     }
-                    // "한식" 아이템 클릭 시 KoreanActivity로 이동
-                    if (gridItem.title == "한식") {
-                        val intent = Intent(this@HomeActivity, KoreanActivity::class.java).apply {
-                            putExtra("category", gridItem.title)
-                        }
-                        startActivity(intent)
-                    }
-
-                    // "치킨" 아이템 클릭 시 ChickenActivity로 이동
-                    if (gridItem.title == "치킨") {
-                        val intent = Intent(this@HomeActivity, ChickenActivity::class.java).apply {
-                            putExtra("category", gridItem.title)
-                        }
-                        startActivity(intent)
-                    }
-
                 }
             })
         }
     }
 
-
     private fun subscribeObservers() {
+        // ViewModel의 데이터 변경 관찰
         viewModel.bannerItemList.observe(this, Observer { bannerItemList ->
             viewPagerAdapter.submitList(bannerItemList)
         })
@@ -122,10 +122,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
     }
 
     private fun autoScrollViewPager() {
+        // ViewPager2 자동 스크롤 기능
         lifecycleScope.launch {
             whenResumed {
                 while (isRunning) {
-                    delay(3000)
+                    delay(3000) // 3초 대기
                     viewModel.getcurrentPosition()?.let {
                         viewModel.setCurrentPosition((it.plus(1)) % 5)
                     }
@@ -136,22 +137,23 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
 
     override fun onPause() {
         super.onPause()
-        isRunning = false
+        isRunning = false // 자동 스크롤 중지
     }
 
     override fun onResume() {
         super.onResume()
-        isRunning = true
+        isRunning = true // 자동 스크롤 재개
     }
 
     override fun onBannerItemClicked(bannerItem: BannerItem) {
-        TODO("Not yet implemented")
+        // 배너 아이템 클릭 시 동작 구현 필요
     }
 
     override fun onClick(view: View?) {
         view?.let {
             when (it.id) {
                 R.id.iv_hamburger -> {
+                    // 햄버거 메뉴 아이콘 클릭 시 드로어 레이아웃 열기/닫기
                     val drawerLayout = binding.root.findViewById<DrawerLayout>(R.id.drawer_layout)
                     val llDrawer = binding.root.findViewById<View>(R.id.llDrawer)
                     if (drawerLayout.isDrawerOpen(llDrawer)) {
@@ -160,8 +162,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
                         drawerLayout.openDrawer(llDrawer)
                     }
                 }
-
                 R.id.ll_left_area -> {
+                    // 드로어 레이아웃의 왼쪽 영역 클릭 시 드로어 닫기
                     val drawerLayout = binding.root.findViewById<DrawerLayout>(R.id.drawer_layout)
                     val llDrawer = binding.root.findViewById<View>(R.id.llDrawer)
                     if (drawerLayout.isDrawerOpen(llDrawer)) {
@@ -171,6 +173,4 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             }
         }
     }
-
-
 }
