@@ -28,46 +28,53 @@ class LoginActivity : AppCompatActivity() {
             return Intent(context, LoginActivity::class.java)
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login) // 레이아웃 설정
+        setContentView(R.layout.activity_login)
 
-        // 뷰 초기화
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
 
-        setupSignInButton() // 로그인 버튼 설정
-        setupSignUpButton() // 회원가입 버튼 설정
+        // 로그인 전 Retrofit 초기화 (토큰 없이)
+        RetrofitClient.initRetrofitWithoutToken()
+
+        setupSignInButton()
+        setupSignUpButton()
     }
 
-    // 로그인 버튼 설정 및 동작 정의
     private fun setupSignInButton() {
         val signInButton: Button = findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
-            // 입력값 가져오기
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            // 입력값 유효성 검사
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "이메일과 비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 로그인 요청 객체 생성
             val signinRequest = SigninRequest(loginId = email, password = password)
 
-            // Retrofit을 사용하여 서버에 로그인 요청
+            // Retrofit을 사용하여 로그인 요청
             RetrofitClient.instance.loginUser(signinRequest).enqueue(object : Callback<SigninResponse> {
-                // 서버 응답 처리
                 override fun onResponse(call: Call<SigninResponse>, response: Response<SigninResponse>) {
                     if (response.isSuccessful) {
                         val result = response.body()
                         result?.let {
                             if (it.success) {
                                 Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                                navigateToHomeActivity() // 홈 화면으로 이동
+
+                                val sharedPref = getSharedPreferences("loginData", MODE_PRIVATE)
+                                val editor = sharedPref.edit()
+                                editor.putString("loginId", it.loginId)
+                                editor.putString("accessToken", it.accessToken)
+                                editor.apply()
+
+                                // 로그인 성공 후 토큰을 포함한 Retrofit 다시 초기화
+                                RetrofitClient.initRetrofitWithToken(this@LoginActivity)
+
+                                // 홈 화면으로 이동
+                                navigateToHomeActivity()
                             } else {
                                 Toast.makeText(this@LoginActivity, "로그인 실패: ${it.message}", Toast.LENGTH_SHORT).show()
                             }
@@ -77,9 +84,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                // 네트워크 오류 처리
                 override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "통신 실패: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "네트워크 오류: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         }

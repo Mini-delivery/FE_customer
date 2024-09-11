@@ -1,11 +1,9 @@
 package com.example.minidelivery_customer.home
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +18,6 @@ import com.example.minidelivery_customer.databinding.ActivityHomeBinding
 import com.example.minidelivery_customer.item.BannerItem
 import com.example.minidelivery_customer.item.FakeItem
 import com.example.minidelivery_customer.item.GridItem
-import com.example.minidelivery_customer.login.LoginActivity
 import com.example.minidelivery_customer.model.Interaction
 import com.example.minidelivery_customer.myPage.MyPageActivity
 import com.example.minidelivery_customer.order.cafe.CafeActivity
@@ -68,40 +65,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         initViewPager2()
         subscribeObservers()
         autoScrollViewPager()
-        setupMyPageButton() // 마이페이지
-        setupLogoutButton() // 로그아웃 기능
-    }
-
-    // 로그아웃 버튼
-    private fun setupLogoutButton() {
-        binding.llDrawer.logoutLayout.setOnClickListener {
-            showLogoutConfirmationDialog()
-        }
-    }
-
-    // 로그아웃 확인 팝업창
-    private fun showLogoutConfirmationDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("로그아웃")
-            .setMessage("로그아웃 하시겠습니까?")
-            .setPositiveButton("확인") { _, _ ->
-                logout()
-            }
-            .setNegativeButton("취소", null)
-            .show()
-    }
-
-    // 로그아웃 실행
-    private fun logout() {
-        // SharedPreferences 데이터 삭제
-        val sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-        sharedPref.edit().clear().apply()
-
-        // 로그인 액티비티로 이동
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+        setupMyPageButton()
     }
 
     // 마이페이지 액티비티 시작 함수
