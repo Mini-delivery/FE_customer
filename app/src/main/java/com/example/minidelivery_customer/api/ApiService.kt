@@ -44,4 +44,7 @@ interface ApiService {
     @POST("api/update")
     fun updateUser(@Body request: UpdateUserRequest): Call<UpdateUserResponse>
 
+    @POST("/api/orders")
+    fun sendOrder(@Body orderRequest: OrderRequest): Call<Void>
+
 }
