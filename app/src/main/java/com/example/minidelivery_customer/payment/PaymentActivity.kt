@@ -1,5 +1,6 @@
 package com.example.minidelivery_customer.payment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -43,6 +44,7 @@ class PaymentActivity : AppCompatActivity() {
         setupStoreInfo() // 가게 정보 설정
         setupCartItems() // 장바구니 아이템 설정
         setupPaymentButton() // 결제 버튼 설정
+        setupHomeAddress() // 사용자 주소 설정
     }
 
     private fun setupToolbar() {
@@ -84,6 +86,12 @@ class PaymentActivity : AppCompatActivity() {
             startActivity(intent) // PaidActivity 시작
             finish() // 현재 액티비티 종료
         }
+    }
+
+    private fun setupHomeAddress() {
+        val sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
+        val userAddress = sharedPref.getString("userAddress", "주소 정보 없음")
+        binding.address.text = userAddress
     }
 
     private fun getCartItems(): List<CartItem> {

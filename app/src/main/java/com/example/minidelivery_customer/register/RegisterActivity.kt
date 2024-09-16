@@ -1,5 +1,6 @@
 package com.example.minidelivery_customer.register
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -62,6 +63,13 @@ class RegisterActivity : AppCompatActivity() {
             if (password != passwordCheck) {
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다. 수정해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+            }
+
+            // 회원가입 성공 시 주소 정보 저장
+            val sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putString("userAddress", address)
+                apply()
             }
 
             // 회원가입 요청 객체 생성
