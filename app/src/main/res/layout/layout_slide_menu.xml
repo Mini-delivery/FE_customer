@@ -466,6 +466,7 @@
                 android:background="#EEE" />
 
             <LinearLayout
+                android:id="@+id/logoutLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -476,7 +477,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="업데이트"
+                    android:text="로그아웃"
                     android:fontFamily="@font/pretendard_bold"
                     android:textColor="#000"
                     android:textSize="16sp" />
@@ -486,8 +487,7 @@
                     android:layout_height="24dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:src="@drawable/ic_arrow_right"
-                    android:visibility="invisible" />
+                    android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
             <View
