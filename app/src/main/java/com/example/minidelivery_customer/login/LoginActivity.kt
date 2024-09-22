@@ -3,6 +3,7 @@ package com.example.minidelivery_customer.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -67,8 +68,11 @@ class LoginActivity : AppCompatActivity() {
                                 val sharedPref = getSharedPreferences("loginData", MODE_PRIVATE)
                                 val editor = sharedPref.edit()
                                 editor.putString("loginId", it.loginId)
+                                editor.putString("nickname", it.nickname)
+                                editor.putString("address", it.address)
                                 editor.putString("accessToken", it.accessToken)
                                 editor.apply()
+                                Log.d("UserData", "Response: ${response.body()?.nickname}, ${response.body()?.address}")
 
                                 // 로그인 성공 후 토큰을 포함한 Retrofit 다시 초기화
                                 RetrofitClient.initRetrofitWithToken(this@LoginActivity)

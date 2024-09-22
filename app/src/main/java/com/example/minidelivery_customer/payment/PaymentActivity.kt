@@ -94,8 +94,8 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun setupHomeAddress() {
-        val sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-        val userAddress = sharedPref.getString("userAddress", "주소 정보 없음")
+        val sharedPref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
+        val userAddress = sharedPref.getString("address", "주소 정보 없음")
         binding.address.text = userAddress
     }
 
@@ -121,7 +121,7 @@ class PaymentActivity : AppCompatActivity() {
                 price = cartItems.sumOf {
                     it.price.replace("[^0-9]".toRegex(), "").toInt() * it.quantity
                 },  // 총 가격 계산
-                address = orderItem.address,  // 주문한 주소
+                address = sharedPref.getString("address", null)!!,  // 주문한 주소
                 store_id = orderItem.name    // 가게 이름
             )
         }
