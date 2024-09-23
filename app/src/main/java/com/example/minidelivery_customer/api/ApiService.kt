@@ -41,7 +41,10 @@ interface ApiService {
     fun getUserInfo(): Call<UserInfoResponse>
 
     // my page user info update
-    @POST("user/update")
+    @POST("api/update")
     fun updateUser(@Body request: UpdateUserRequest): Call<UpdateUserResponse>
+
+    @POST("/api/orders")
+    fun sendOrder(@Body orderRequest: OrderRequest): Call<Void>
 
 }

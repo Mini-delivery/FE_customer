@@ -4,6 +4,7 @@ data class SigninResponse(
     val loginId: String,
     val nickname: String,
     val accessToken: String,
+    val address: String,
     val success: Boolean,
     val message: String
 )

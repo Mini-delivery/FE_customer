@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -36,7 +38,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
     private lateinit var viewModel: HomeActivityViewModel
     private lateinit var gridRecyclerViewAdapter: GridRecyclerViewAdapter
     private var isRunning = true
-
     // FakeItem 인스턴스 생성
     private val fakeItem = FakeItem()
 
@@ -44,7 +45,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel = ViewModelProvider(this).get(HomeActivityViewModel::class.java)
 
         // FakeItem에서 가져온 데이터로 ViewModel 설정
@@ -69,6 +69,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         subscribeObservers()
         autoScrollViewPager()
         setupMyPageButton() // 마이페이지
+        updateNickNameInView()
         setupLogoutButton() // 로그아웃 기능
     }
 
@@ -90,13 +91,29 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             .setNegativeButton("취소", null)
             .show()
     }
+    private fun updateNickNameInView() {
+        val sharedPref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
+        val nickName = sharedPref.getString("nickname", "Default NickName")  // 기본값 설정
+
+        // nicknameTextView에 닉네임 설정
+        val nicknameTextView: TextView = findViewById(R.id.nicknameTextView)  // 레이아웃에 있는 TextView ID
+        nicknameTextView.text = nickName
+
+        Log.d("HomeActivity", "NickName displayed: $nickName")
+    }
 
     // 로그아웃 실행
     private fun logout() {
         // SharedPreferences 데이터 삭제
-        val sharedPref = getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
         sharedPref.edit().clear().apply()
 
+        val isCleared = sharedPref.getAll().isEmpty()
+        if (isCleared) {
+            Log.d("SharedPreferences", "모든 데이터가 삭제되었습니다.")
+        } else {
+            Log.d("SharedPreferences", "데이터가 삭제되지 않았습니다.")
+        }
         // 로그인 액티비티로 이동
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
