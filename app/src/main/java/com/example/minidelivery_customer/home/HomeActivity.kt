@@ -19,6 +19,7 @@ import com.example.minidelivery_customer.R
 import com.example.minidelivery_customer.adapter.GridRecyclerViewAdapter
 import com.example.minidelivery_customer.adapter.ViewPagerAdapter
 import com.example.minidelivery_customer.databinding.ActivityHomeBinding
+import com.example.minidelivery_customer.delivery.DeliveryActivity
 import com.example.minidelivery_customer.item.BannerItem
 import com.example.minidelivery_customer.item.FakeItem
 import com.example.minidelivery_customer.item.GridItem
@@ -71,6 +72,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
         setupMyPageButton() // 마이페이지
         updateNickNameInView()
         setupLogoutButton() // 로그아웃 기능
+        setupDeliveryView() // 배달 현황 뷰 설정 함수 호출
     }
 
     // 로그아웃 버튼
@@ -91,6 +93,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
             .setNegativeButton("취소", null)
             .show()
     }
+
     private fun updateNickNameInView() {
         val sharedPref = getSharedPreferences("loginData", Context.MODE_PRIVATE)
         val nickName = sharedPref.getString("nickname", "Default NickName")  // 기본값 설정
@@ -133,6 +136,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, Interaction {
     private fun startOrderHistoryActivity() {
         val intent = Intent(this, OrderHistoryActivity::class.java)
         startActivity(intent)
+    }
+
+    // 배달 현황 뷰 클릭 리스너를 설정하는 함수
+    private fun setupDeliveryView() {
+        findViewById<View>(R.id.deliveryView).setOnClickListener {
+            // deliveryView 클릭 시 DeliveryActivity로 이동
+            val intent = Intent(this, DeliveryActivity::class.java) // DeliveryActivity로 이동할 Intent 생성
+            startActivity(intent) // DeliveryActivity 시작
+        }
     }
 
     private fun initViewPager2() {
