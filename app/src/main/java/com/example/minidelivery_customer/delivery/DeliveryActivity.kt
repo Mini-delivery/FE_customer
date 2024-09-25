@@ -34,7 +34,7 @@ class DeliveryActivity : AppCompatActivity() {
         webSettings.javaScriptEnabled = true // JavaScript 활성화
 
         // 스트리밍 URL 설정 (예: http://<your_ip>:8000/stream.mjpg)
-        val streamingUrl = "" // 실제 스트리밍 URL을 여기에 입력하세요
+        val streamingUrl = "http://192.168.137.141:5000" // 실제 스트리밍 URL을 여기에 입력하세요
         webView.loadUrl(streamingUrl) // URL 로드
     }
 }
